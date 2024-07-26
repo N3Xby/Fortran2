@@ -1,0 +1,21 @@
+ plot [-5:5] [-20:20] x**2-exp(x) lt rgb "red" title "Función trabajo 1", 2*x**3-exp(x) lt rgb "blue"  title "Función trabajo 2"
+ set xzeroaxis
+ set yzeroaxis
+ set border 0            #quitar marco alrededor
+ set xtics axis          #incluir tics en eje x
+ set xtics -5,1,5        #limites e incrementos entre tics del eje x
+ set ytics axis          #incluir tics eje y
+ set grid xtics ytics    #malla
+ set grid                #habilitar la malla
+ set ticscale 0
+ set xtics add ("" 0)
+ set ytics add ("" 0)
+ # incluye flechas direccion positiva ejes
+ set arrow 1 from 0,0 to graph 1, first 0 filled head
+ set arrow 2 from 0,0 to first 0, graph 1 filled head
+ set title "Funciones trabajo de la Practica 3"
+ set ylabel "f(x)"
+ set xlabel "x"
+ replot
+ set terminal png
+ set output "figura.png"
