@@ -11,7 +11,7 @@ program p5e1
     end function
     END INTERFACE
     open(1,file="matriz_ampliada.txt")
-    do i=1,1000
+    do i=1,1000 !lectura del archivo
         read(1,*,end=67)
     end do
     67 n=i-1
