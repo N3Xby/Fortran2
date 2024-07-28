@@ -15,4 +15,4 @@ print*,(x(i),i=1,5)
 x3=funvec(x)
 resultado=sum((/(x3(i),i=1,5,2)/))
 write(6,*)"El resultado de la suma es",resultado
-end program
+end program p2e3
