@@ -36,7 +36,7 @@ print*,(c(i),i=1,dimc)
 print*, "Ahora veamos el valor máximo y el valor mínimo del vector c, y su posición, con func intrínsecas"
 maximo=maxval(c)
 minimo=minval(c)    !para que sea un real sin tener que poner (1)
-maxpos=maxloc(c)    !en la declaracion podemos poner maxloc(c,1) para que te devuelva un escalar en vez de un vector
+maxpos=maxloc(c)    !en la declaracion ponemos maxloc(c,1)
 minpos=minloc(c)    !si hay más de un minimo o maximo mejor declaramos el vector
 print*,"máximo=",maximo,"mínimo=",minimo,"posición del max=",maxpos,"posición del min=",minpos
 !b) ahora por el método alternativo sin funciones intrínsecas
@@ -83,11 +83,6 @@ do i=1,15
     c(i)=sqrt(a(i)*b(i))
 end do
 print*,"El nuevo vector c sería:",(c(i),i=1,15)
-
-!Si queremos elegir los dos primeros valores de un vector de dimensión n es tan fácil como poner a(1:2), los 4 siguientes a(2:6) como un intervalo
-!Si lo que queremos es elegir los impares o paras, haremos a(1:3:2) o a(2:4:2), respectivamente.
-!Si dejas libre el primer elemeto coge a partir del primero a(:3) o si se deja libre el último coge hasta el último a(2:)
-
 !11-12 Asignamos la dimension 5x3 a D y la generamos a partir del nuevo vector A.
 allocate (d(5,3))
 d=reshape(a,(/5,3/),order=(/1,2/))
