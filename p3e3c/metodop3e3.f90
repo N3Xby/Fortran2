@@ -14,7 +14,7 @@ function falsaposicion(func,a,b,errx,errf,ite)
     do j=1,ite
         c=a-((fa*(b-a))/(fb-fa))    !respecto al 2 cambiamos esta linea solamente
         fc=func(c)
-        if (fc.le.errf.and.abs(b-a).le.errx) then
+        if (abs(fc).lt.errf.and.abs(b-a).lt.errx) then
             falsaposicion(1)=c
             falsaposicion(2)=j
             return

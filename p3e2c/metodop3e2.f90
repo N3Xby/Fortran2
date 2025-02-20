@@ -14,7 +14,7 @@ function bisec(func,a,b,errx,errf,ite)
     do j=1,ite
         c=(a+b)*0.5
         fc=func(c)
-        if (fc.le.errf.and.abs(b-a).le.errx) then
+        if (abs(fc).lt.errf.and.abs(b-a).lt.errx) then
             bisec(1)=c
             bisec(2)=j
             return

@@ -40,17 +40,24 @@ program p3e2
         read(*,*)a1,b1
     end do
     
+    do while (fun2(a1)*fun2(b1).gt.0)
+        write(6,*) "Dame otros valores"
+        read(*,*)a1,b1
+    end do
+    
     result1=bisec(fun1,a1,b1,errx1,errf1,ite1)
-    if(result1(2).gt.ite1) then
-    print*,"Se ha conseguido la precisión pedida"
+    if(result1(2).lt.ite1) then
+    print*,"Se ha conseguido la precisión pedida (Han sobrado iteraciones)"
     Else
-    print*,"No se ha conseguido la precisión deseada"
+    print*,"No se ha conseguido la precisión deseada (Las iteraciones no han sido suficientes)"
     end if
+    print*,"El valor aproximado de la raiz de la 1º función sería",result1(1)
     result2=bisec(fun2,a2,b2,errx2,errf2,ite2)
-    if(result2(2).gt.ite2) then
-    print*,"Se ha conseguido la precisión pedida"
+    if(result2(2).lt.ite2) then
+    print*,"Se ha conseguido la precisión pedida (Han sobrado iteraciones)"
     Else
-    print*,"No se ha conseguido la precisión deseada"
+    print*,"No se ha conseguido la precisión deseada (Las iteraciones no han sido suficientes)"
     end if
+    print*,"El valor aproximado de la raiz de la 2º función sería",result2(1)
     !el 3 se hace cambiando la linea c=(a+b)*0.5
 end program
