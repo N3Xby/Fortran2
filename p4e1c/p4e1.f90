@@ -4,15 +4,15 @@ program p4e1
     integer::nmax,nite1,nite2
     INTERFACE
         subroutine newton(func,a,facc,nmax,nite,raiz)
-        implicit none
-        real::a,facc,raiz,x,v(2),x1 !facc es la precisión
-        integer::nite,nmax
-        INTERFACE
-            function func(xm)
-            implicit none
-            real::xm,func(2)
-            end function
-        END INTERFACE
+		    implicit none
+		    real::a,facc,raiz,x,v(2),x1 !facc es la precisión
+		    integer::nite,nmax
+		    INTERFACE
+		        function func(xm)
+		        implicit none
+		        real::xm,func(2)
+		        end function
+		    END INTERFACE
         end subroutine
         
         function fun1(xm)
