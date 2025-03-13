@@ -1,14 +1,14 @@
-program p5e1
+program p5e2
     implicit none
     real,allocatable::a(:,:),b(:),x(:)
     integer::k,n,i,j
     INTERFACE
-    function gauss(a,b)
+    subroutine gauss(a,b,x)
         implicit none
-        real::a(:,:),b(:),gauss(size(b))
+        real::a(:,:),b(:),x(size(b))
         integer::k,n,i,j,imax,m
         real::suma,aux1(size(b)),aux2
-    end function
+    end subroutine
     END INTERFACE
     open(1,file="matriz_ampliada.txt")
     do i=1,1000 !lectura del archivo	!se puede poner un do ciego e iniciar un contador i=0 arriba y dentro i=i+1
@@ -24,7 +24,11 @@ program p5e1
     do i=1,n 
         write(6,*)(a(i,j),j=1,n),b(i)
     end do
-    x=gauss(a,b)
+    call gauss(a,b,x)
+    Print*,"la matriz triangular superior es:"
+    do i=1,n
+        write(6,*)(a(i,j),j=1,n)
+    end do
     print*,"Los valores de los coeficientes son:"
     do i=1,n
         write(*,*)x(i)
