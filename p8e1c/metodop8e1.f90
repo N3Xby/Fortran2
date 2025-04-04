@@ -1,11 +1,11 @@
-function newton(nodos,imagenes,puntos)
+function newton(nodos,imagenes,puntosbuenos)
     implicit none
-    real::nodos(0:),imagenes(0:),puntos(:),newton(1:size(puntos))
+    real::nodos(0:),imagenes(0:),puntosbuenos(:),newton(1:size(puntosbuenos))
     integer::n,np
     integer::i,j,p
     real::a(0:size(nodos)-1,0:size(nodos)-1),c(0:size(nodos)-1),prod,suma
     n=size(nodos)-1
-    np=size(puntos)
+    np=size(puntosbuenos)
     a(0:n,0)=1
     a(0:n,1:n)=0
     do i=1,n
@@ -34,7 +34,7 @@ function newton(nodos,imagenes,puntos)
         newton(i)=c(0)
         prod=1
         do j=1,n
-            prod=prod*(puntos(i)-nodos(j-1))
+            prod=prod*(puntosbuenos(i)-nodos(j-1))
             newton(i)=newton(i)+(c(j)*prod)
         end do
     end do

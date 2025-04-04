@@ -1,14 +1,14 @@
-program p7e1
+program p7e3
     implicit none
-    real,allocatable::nodos(:),imagenes(:),puntos(:),puntosbuenos(:),y(:)
+    real,allocatable::nodos(:),imagenes(:),puntos(:),y(:)
     integer::n,m,i,j,k
     INTERFACE
-        function metododirecto(nodos,imagenes,puntos)
+        subroutine metododirecto(nodos,imagenes,puntos,y)
             implicit none
-            real::nodos(:),imagenes(:),puntos(:),metododirecto(size(puntos)),x(size(puntos)),matriz(size(imagenes),&
+            real::nodos(:),imagenes(:),puntos(:),y(size(puntos)),x(size(puntos)),matriz(size(imagenes),&
             &size(imagenes)),suma(size(imagenes)),valpoli(size(puntos),size(imagenes))
             integer::n,m,i,j,k
-        end function
+        end subroutine
         function gauss(a,b)
             implicit none
             real::a(:,:),b(:),gauss(size(b))
@@ -43,28 +43,23 @@ program p7e1
         print*,puntos(i)
     end do
     
-    k=0
     do i=1,m
-    	if (puntos(i).ge.minval(nodos) .and. puntos(i).le.maxval(nodos) ) then
-    	    k = k+1
+    	if (puntos(i).lt.nodos(1)) then
+    	    puntos(1:m-1) = (/ puntos(1:i-1), puntos(i+1:m) /)
+    	    m = m+1
+    	else if (puntos(i).gt.nodos(n)) then
+    	    puntos(1:m-1) = (/ puntos(1:i-1), puntos(i+1:m) /)
+    	    m = m-1
+    	else
     	end if
     end do
-    allocate (puntosbuenos(k))
-    k=0
-    do i=1,m
-        if (puntos(i).ge.minval(nodos) .and. puntos(i).le.maxval(nodos) ) then
-            k=k+1
-            puntosbuenos(k)=puntos(i)
-        end if
-    end do
-    
     
     print*,"Los valores de los puntos que se pueden interpolar son:"
-    do i=1,k
-        print*,puntosbuenos(i)
+    do i=1,m
+        print*,puntos(i)
     end do
     
-    y=metododirecto(nodos,imagenes,puntosbuenos)
+    call metododirecto(nodos,imagenes,puntos,y)
     print*,"Las interpolaciones de cada uno de los puntos dados son:"
     do i=1,m
         write(*,*)y(i)

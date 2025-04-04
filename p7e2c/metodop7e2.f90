@@ -2,14 +2,6 @@ function lagrange(nodos,imagenes,puntos)
     implicit none
     real::nodos(:),imagenes(:),puntos(:),lagrange(size(puntos)),nume,deno
     integer::n,m,i,j,k
-    INTERFACE
-        function gauss(a,b)
-            implicit none
-            real::a(:,:),b(:),gauss(size(b))
-            integer::k,n,i,j,imax,m
-            real::suma,aux1(size(b)),aux2
-        end function
-    END INTERFACE
     n=size(imagenes)
     m=size(puntos)
     do i=1,m

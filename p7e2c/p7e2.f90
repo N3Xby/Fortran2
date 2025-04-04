@@ -8,12 +8,6 @@ program p7e2
             real::nodos(:),imagenes(:),puntos(:),lagrange(size(puntos)),nume,deno
             integer::n,m,i,j,k
         end function
-        function gauss(a,b)
-            implicit none
-            real::a(:,:),b(:),gauss(size(b))
-            integer::k,n,i,j,imax,m
-            real::suma,aux1(size(b)),aux2
-        end function
     END INTERFACE
     open(1,file="nodos_imagenes.txt")
     n=0

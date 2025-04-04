@@ -1,14 +1,14 @@
-program p8e1
+program p8e2
     implicit none
     real,allocatable::nodos(:),imagenes(:),puntos(:),puntosbuenos(:),interpol(:)
     integer::nn,np,i,j,k
     INTERFACE
-	    function newton(nodos,imagenes,puntos)
-		    implicit none
-		    real::nodos(0:),imagenes(0:),puntos(:),newton(1:size(puntos))
-		    integer::n,np
-		    integer::i,j,p
-		    real::a(0:size(nodos)-1,0:size(nodos)-1),c(0:size(nodos)-1),prod,suma
+        function newtongreg(nodos,imagenes,puntosbuenos)
+            implicit none
+            real::nodos(0:),imagenes(0:),puntosbuenos(:),newtongreg(1:size(puntosbuenos))
+            integer::n,np
+            integer::i,j,p,k
+            real::ng(size(puntosbuenos)),df(0:size(nodos)-1),piv,s,h
 		end function
     END INTERFACE
     open(1,file="nodos_imagenes.txt")
@@ -52,14 +52,19 @@ program p8e1
             puntosbuenos(k)=puntos(i)
         end if
     end do
-                    
+                   
     print*,"Los valores de los puntos que se pueden interpolar son:"
     do i=1,k
         print*,puntosbuenos(i)
     end do
     
-    interpol=newton(nodos,imagenes,puntosbuenos)  
-    
+    interpol=newtongreg(nodos,imagenes,puntosbuenos)
+
+    print*,"Los valores de las interpolaciones son:"
+    do i=1,np
+        write(6,*)interpol(i)
+    end do
+
     open(3,file="salida.txt")
     do i=0,nn-1
         write(3,*)nodos(i),imagenes(i)
@@ -107,4 +112,3 @@ program p8e1
     call system('gnuplot -p pinta.gnpl')
     
 end program
-    
