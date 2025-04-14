@@ -1,6 +1,6 @@
 subroutine metododirecto(nodos,imagenes,puntos,x)
     implicit none
-    real::nodos(:),imagenes(:),puntos(:),metododirecto(size(puntos)),x(size(puntos)),matriz(size(imagenes),&
+    real::nodos(:),imagenes(:),puntos(:),x(size(puntos)),matriz(size(imagenes),&
     &size(imagenes)),suma(size(imagenes))
     integer::n,m,i,j,k
     INTERFACE
@@ -27,4 +27,4 @@ subroutine metododirecto(nodos,imagenes,puntos,x)
     do i=1,n
         print*,x(i)
     end do
-end function
+end subroutine
