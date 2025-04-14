@@ -40,14 +40,14 @@ program p8e2
     
     k=0
     do i=1,np
-    	if (puntos(i).ge.minval(nodos) .and. puntos(i).le.maxval(nodos) ) then
+    	if (puntos(i)>=minval(nodos) .and. puntos(i)<=maxval(nodos) ) then
     	    k = k+1
     	end if
     end do
     allocate (puntosbuenos(k))
     k=0
     do i=1,np
-        if (puntos(i).ge.minval(nodos) .and. puntos(i).le.maxval(nodos) ) then
+        if (puntos(i)>=minval(nodos) .and. puntos(i)<=maxval(nodos) ) then
             k=k+1
             puntosbuenos(k)=puntos(i)
         end if

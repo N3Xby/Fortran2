@@ -43,4 +43,4 @@ function newtongreg(nodos,imagenes,puntosbuenos)
         s=(puntosbuenos(k)-nodos(0))/h
         newtongreg(k)=imagenes(0)+sum((/((product((/((s-j),j=0,i-1)/))/product((/(j,j=1,i)/)))*df(i),i=1,n)/))
     end do
-    end function
+end function
