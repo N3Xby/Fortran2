@@ -1,24 +1,23 @@
 program p9e2
     implicit none
-    real,allocatable::nodos(:),imagenes(:),puntos(:),h,prime(:),segun(:)
+    real,allocatable::nodos(:),imagenes(:),puntos(:),prime(:),segun(:)
+    real::h
     integer::nn,np,i,j,k
     INTERFACE
-        
+
         subroutine deriva(nodos,imagenes,puntos,h,prime,segun)
-	    implicit none
-	    real::nodos(:),imagenes(:),puntos(:),h,ymas(size(puntos)),ymenos(size(puntos)),prime(size(puntos)),&
-	    &primemenos(size(puntos)),primemas(size(puntos)),segun(size(puntos)),ymasmas(size(puntos)),ymasmenos(size(puntos)),&
-	    &ymenosmenos(size(puntos))
-	    integer::nn,np,i,j,k
+            implicit none
+            real::nodos(:),imagenes(:),puntos(:),h,prime(size(puntos)),segun(size(puntos))
+            integer::nn,np,i,j,k
+            real::x(size(nodos)),aux1,aux2,aux3
         end subroutine
-        
+
         subroutine metododirecto(nodos,imagenes,puntos,x)
             implicit none
-            real::nodos(:),imagenes(:),puntos(:),x(size(puntos)),matriz(size(imagenes),&
-            &size(imagenes)),suma(size(imagenes))
+            real::nodos(:),imagenes(:),puntos(:),x(size(puntos)),matriz(size(imagenes),size(imagenes)),suma(size(imagenes))
             integer::n,m,i,j,k
         end subroutine
-        
+
         function gauss(a,b)
             implicit none
             real::a(:,:),b(:),gauss(size(b))
@@ -54,7 +53,9 @@ program p9e2
     end do
     print*, "Dime el paso h a aplicar en la derivacion"
     read(*,*)h
+
     call deriva(nodos,imagenes,puntos,h,prime,segun)
+
     print*,"Los valores de las derivadas primeras son:"
     do i=1,np
     	write(*,*)prime(i)
