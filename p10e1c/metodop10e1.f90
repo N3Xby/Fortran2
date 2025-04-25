@@ -13,6 +13,9 @@ real function integranume(nodos,imagenes,a,b)
     call metododirecto(nodos,imagenes,x)
     coef=x
     sumab=0
+    !Tenemos los coeficientes del polinomio del metodo directo, ahora tenemos que integrar el polinomio de este metodo
+    !Una vez tenemos la integración, nos damos cuenta que la integración es integrar desde b a a este polinomio.
+    !Así, calculamos ambos extremos y los restamos para obtener el valor de la integral.
     do i=1,nn
         sumab=sumab+(coef(i)*((b**i)/i))
     end do
