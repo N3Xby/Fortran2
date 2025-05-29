@@ -1,0 +1,6 @@
+ set terminal png
+ set output 'figura1.png'
+ set title 'Práctica 11, ejercicio 2 - Función 1'
+ set xlabel 't'
+ set ylabel 'y(t)'
+ plot 'salida1.txt' using 1:2 w lp title 'Euler explicito','salida1.txt' using 1:3 w lp title 'Euler centrado','salida1.txt' using 1:4 w lp title 'Heun',(25*exp(x-0.05*(x**2))) title 'Función analítica'

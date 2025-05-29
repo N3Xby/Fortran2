@@ -1,0 +1,6 @@
+ set terminal png
+ set output 'figura2.png'
+ set title 'Práctica 11, ejercicio 2 - Función 2'
+ set xlabel 'z'
+ set ylabel 'p(z)'
+ plot 'salida2.txt' using 1:2 w lp title 'Euler explicito','salida2.txt' using 1:3 w lp title 'Euler centrado','salida2.txt' using 1:4 w lp title 'Heun',(101325*exp(-x/8000.)) title 'Función analítica'
